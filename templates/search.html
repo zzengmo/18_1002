@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+
+    <title>검색 결과</title>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1>{{ keyword }} 검색 결과</h1>
+
+        <div>
+            <a href="/file?keyword={{ keyword }}">
+                <button>CSV 다운로드</button>
+            </a>
+        </div>
+
+        <table>
+
+            <tr>
+                <td>NO</td>
+                <td>사이트</td>
+                <td>회사</td>
+                <td>공고제목</td>
+                <td>지역</td>
+                <td>상세보기</td>
+            </tr>
+
+            {% for index, job in jobs %}
+
+            <tr>
+                <td>{{ index + 1 }}</td>
+
+                <td>{{ job["site"] }}</td>
+
+                <td>{{ job["company"] }}</td>
+
+                <td>{{ job["title"] }}</td>
+
+                <td>{{ job["location"] }}</td>
+
+                <td>
+                    <a
+                        href="{{ job['link'] }}"
+                        target="_blank"
+                    >
+                        상세보기
+                    </a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </main>
+
+</body>
+</html>
